@@ -4,6 +4,8 @@
 
 EmotionalBETO es una herramienta de procesamiento de lenguaje natural diseñada para identificar la emoción predominante en textos en español. Incorpora un sistema de inferencia basado en modelos BERT, acompañado de visualización avanzada de probabilidades y heurísticas de detección de sarcasmo y nivel de urgencia. Además, sugiere respuestas automáticas adaptadas al contexto emocional.
 
+*Despliegue*: https://huggingface.co/spaces/Dannzho/EmotionalBETO
+
 ## Características principales
 
 - **Clasificación de emociones:** Detección automática de la emoción principal en el texto de entrada.
