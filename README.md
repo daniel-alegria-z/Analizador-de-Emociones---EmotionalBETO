@@ -1,128 +1,113 @@
 # EmotionalBETO
 
-**Analizador de emociones en español**
+**Análisis de emociones en español basado en BERT**
 
-EmotionalBETO es un proyecto personal que detecta la emoción principal de un texto en español, muestra una distribución de probabilidades, detecta posible sarcasmo y nivel de urgencia, y sugiere una respuesta apropiada. Está pensado como demostración y herramienta para prototipado y evaluación de análisis de sentimiento/emoción en aplicaciones en español.
+EmotionalBETO es una herramienta de procesamiento de lenguaje natural diseñada para identificar la emoción predominante en textos en español. Incorpora un sistema de inferencia basado en modelos BERT, acompañado de visualización avanzada de probabilidades y heurísticas de detección de sarcasmo y nivel de urgencia. Además, sugiere respuestas automáticas adaptadas al contexto emocional.
 
-**Estado:** Prototipo funcional. Ideal para demos y pruebas; pendiente optimización y ajustes para producción.
+## Características principales
 
-**Demo:** La aplicación UI se sirve con `Gradio` y corre por defecto en el puerto `7860`.
+- **Clasificación de emociones:** Detección automática de la emoción principal en el texto de entrada.
+- **Distribución de probabilidades:** Visualización mediante gráfica de barras para mayor transparencia.
+- **Heurísticas inteligentes:** Análisis de sarcasmo y urgencia para mensajes destacados.
+- **Sugerencias contextuales:** Generación de una respuesta recomendada basada en el diagnóstico de emociones.
+- **Evaluación y tests automáticos:** Scripts para evaluación rápida e integración de pruebas unitarias con `pytest`.
 
-**Características principales**
-- **Detección de emoción:** usa un modelo basado en BERT para clasificar emociones.
-- **Visualización:** gráfica de barras con la distribución de probabilidades.
-- **Heurísticas:** detección de sarcasmo y nivel de urgencia mejoradas por reglas.
-- **Respuesta sugerida:** texto sugerido según emoción detectada.
-- **Evaluación y tests:** script de evaluación y suite `pytest` incluida.
+## Contenido del repositorio
 
-**Contenido del repositorio**
-- **[emotional_bert.py](emotional_bert.py)**: punto de entrada con la interfaz `Gradio`.
-- **[emotion_core.py](emotion_core.py)**: lógica de carga del modelo, inferencia y heurísticas.
-- **[evaluate.py](evaluate.py)**: script para evaluar el modelo contra un CSV de ejemplo.
-- **[data/sample_eval.csv](data/sample_eval.csv)**: dataset de muestra para evaluación rápida.
-- **[tests/](tests/)**: tests unitarios y de integración con `pytest`.
-- **[requirements.txt](requirements.txt)**: dependencias fijadas.
-- **[Dockerfile](Dockerfile)** y **[docker-compose.yml](docker-compose.yml)**: para ejecutar en contenedor.
+- `emotional_bert.py`: Interfaz principal basada en Gradio para interacción rápida.
+- `emotion_core.py`: Núcleo del modelo, lógica de inferencia y heurísticas.
+- `evaluate.py`: Script para evaluación y métricas del modelo.
+- `data/sample_eval.csv`: Dataset de muestra para tests y benchmarking.
+- `tests/`: Suite de pruebas automatizadas.
+- `requirements.txt`: Dependencias del proyecto.
+- `Dockerfile` y `docker-compose.yml`: Listos para despliegue en contenedores.
 
-**Requisitos**
-- Python 3.11+
-- Espacio en disco y red para descargar el modelo (cuando se ejecute por primera vez).
+## Instalación y uso
 
-**Instalación y ejecución local**
+**Requisitos previos**
+- Python 3.11 o superior.
 
-1. Crear y activar un entorno virtual (Windows):
+**Instalación**
 
-```powershell
-python -m venv .env
-.\.env\Scripts\activate
-```
+1. Clona el repositorio y entra en el directorio:
 
-2. Instalar dependencias:
+    ```bash
+    git clone https://github.com/daniel-alegria-z/Analizador-de-Emociones---EmotionalBETO.git
+    cd Analizador-de-Emociones---EmotionalBETO
+    ```
 
-```powershell
-pip install -r requirements.txt --prefer-binary
-```
+2. Crea y activa un entorno virtual:
 
-3. Ejecutar la aplicación:
+    ```bash
+    python -m venv .env
+    # Windows:
+    .\.env\Scripts\activate
+    # Linux/Mac:
+    source .env/bin/activate
+    ```
 
-```powershell
-python emotional_bert.py
-```
+3. Instala dependencias:
 
-La interfaz Gradio quedará accesible en `http://0.0.0.0:7860`.
+    ```bash
+    pip install -r requirements.txt --prefer-binary
+    ```
 
-**Docker (desarrollo / prueba local)**
+4. Ejecuta la aplicación:
 
-Construir la imagen:
+    ```bash
+    python emotional_bert.py
+    ```
 
-```bash
-docker build -t emotionalbeto:dev .
-```
+El panel interactivo estará disponible en `http://0.0.0.0:7860`.
 
-Ejecutar el contenedor:
+## Ejecución con Docker
 
-```bash
-docker run -p 7860:7860 --rm emotionalbeto:dev
-```
+1. Construye la imagen:
 
-O con `docker-compose`:
+    ```bash
+    docker build -t emotionalbeto:dev .
+    ```
 
-```bash
-docker-compose up --build
-```
+2. Ejecuta el contenedor:
 
-> Nota sobre `torch`: `requirements.txt` está fijado a una build CPU para portabilidad. Si necesitas GPU en producción, reemplaza la dependencia por la rueda adecuada o usa una imagen base con CUDA.
+    ```bash
+    docker run -p 7860:7860 --rm emotionalbeto:dev
+    ```
 
-**Evaluación**
+O utiliza `docker-compose`:
 
-Usa el script `evaluate.py` para ejecutar una evaluación rápida sobre un CSV con dos columnas: `text,label`.
+    ```bash
+    docker-compose up --build
+    ```
 
-```powershell
-python evaluate.py
-```
+## Evaluación y testing
 
-El script generará `evaluation_results.json` y `confusion_matrix.csv`.
+- Ejecuta una evaluación rápida con:
 
-**Tests**
+    ```bash
+    python evaluate.py
+    ```
 
-La suite de pruebas está en `tests/` y se ejecuta con `pytest`:
+- Corre la suite de pruebas automatizadas con:
 
-```bash
-pytest -q
-```
+    ```bash
+    pytest -q
+    ```
 
-**Integración continua**
+## Integración continua
 
-Se incluye un workflow básico para GitHub Actions en `.github/workflows/pytest.yml` que ejecuta los tests en push/PR. Puedes extenderlo para ejecutar linters, coverage y publicar artefactos.
+El repositorio incluye configuración para GitHub Actions en `.github/workflows/pytest.yml`, permitiendo ejecución automática de tests en cada push o pull request. El flujo es fácilmente extensible para linters, metrics y publicación de artefactos.
 
-**Buenas prácticas y recomendaciones previas a producción**
-- **Evaluar el modelo:** crear un dataset anotado representativo (50–200 ejemplos por clase) y medir métricas por clase.
-- **Calibrar umbrales:** revisar `UMBRAL_CONFIANZA` y `UMBRAL_DIFERENCIA` en `emotion_core.py` con datos reales.
-- **Optimización de inferencia:** quantization, ONNX export o TorchScript para reducir latencia y consumo CPU.
-- **Escalado y despliegue:** para producción usar un orquestador (Kubernetes) o un servicio de PaaS, configurar healthchecks, logging y métricas.
-- **Privacidad:** revisar PII en datos de entrada y políticas de retención.
+## Contribuir
 
-**Limitaciones conocidas**
-- El modelo base puede no estar perfectamente adaptado al español coloquial o dominios específicos.
-- La detección de `sarcasmo` es heurística y no reemplaza un modelo entrenado para ironía.
-- Para alto tráfico o latencias bajas, se recomendará GPU u optimizaciones de inferencia.
+¿Te gustaría aportar a EmotionalBETO? Abre un issue o pull request con tu propuesta. ¡Colaboraciones bienvenidas!
 
-**Siguientes pasos recomendados**
-1. Publicar el repo como demo pública (por ejemplo en Hugging Face Spaces) para compartir el prototipo. 
-2. Recolectar y etiquetar datos reales para evaluación y posible fine-tuning.
-3. Preparar Docker optimizado para producción con `uvicorn`/`gunicorn`, healthchecks y metrics.
+## Autor
 
-**Contribuciones**
-- Este proyecto es personal; si quieres colaborar, abre un issue o PR con propuestas concretas.
+**Daniel Esteban Alegría Zamora**  
+Software Developer  
+📧 daniel.alegria.z@outlook.com  
+[LinkedIn](https://www.linkedin.com/in/daniel-esteban-a-52b6752a0/)
 
-**Contacto y más información**
-- Si quieres que configure el deploy en Hugging Face Spaces o prepare la imagen Docker para producción, te puedo ayudar.
-
-**Autoría**
-
-Daniel Esteban Alegría Zamora
-Software Developer
-Contacto: daniel.alegria.z@outlook.com
-LinkedIn: https://www.linkedin.com/in/daniel-esteban-a-52b6752a0/
-
-Contexto del proyecto: proyecto personal.
+---
+Proyecto personal desarrollado para análisis, experimentación y portafolio profesional.
