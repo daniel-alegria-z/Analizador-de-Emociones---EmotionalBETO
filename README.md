@@ -15,6 +15,7 @@ EmotionalBETO es una herramienta de procesamiento de lenguaje natural diseñada 
 ## Contenido del repositorio
 
 - `emotional_bert.py`: Interfaz principal basada en Gradio para interacción rápida.
+- `app.py`: Entrada compatible con Hugging Face Spaces.
 - `emotion_core.py`: Núcleo del modelo, lógica de inferencia y heurísticas.
 - `evaluate.py`: Script para evaluación y métricas del modelo.
 - `data/sample_eval.csv`: Dataset de muestra para tests y benchmarking.
@@ -59,6 +60,32 @@ EmotionalBETO es una herramienta de procesamiento de lenguaje natural diseñada 
     ```
 
 El panel interactivo estará disponible en `http://0.0.0.0:7860`.
+
+## Despliegue recomendado en Hugging Face Spaces
+
+Para una demo pública, gratuita y sencilla, la mejor opción es publicar el proyecto como un Space de tipo `Gradio`.
+
+**Por qué lo recomiendo**
+- No necesitas pagar una VM ni configurar infraestructura compleja.
+- Gradio encaja de forma natural con Spaces.
+- Puedes compartir una URL pública con tu portafolio en pocos minutos.
+
+**Pasos resumidos**
+
+1. Sube el repositorio a GitHub.
+2. En Hugging Face, crea un nuevo Space y selecciona `Gradio`.
+3. Importa el repo desde GitHub o sube estos archivos clave:
+    - `app.py`
+    - `emotional_bert.py`
+    - `emotion_core.py`
+    - `requirements.txt`
+    - `README.md`
+4. Hugging Face instalará dependencias y ejecutará `app.py`.
+
+**Notas importantes**
+- La primera ejecución puede tardar porque descarga `torch`, `transformers` y el modelo.
+- Si después quieres más rendimiento o un despliegue privado, puedes migrar a hardware dedicado.
+- Mantén el Space público si quieres una demo de portafolio sin coste.
 
 ## Ejecución con Docker
 
