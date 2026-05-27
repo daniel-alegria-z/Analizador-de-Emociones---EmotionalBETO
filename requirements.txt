@@ -1,6 +1,6 @@
-# Use CPU build of PyTorch for portability in the Docker image.
+# Standard PyPI build of PyTorch, compatible with GitHub Actions and Docker builds.
 # For GPU/CUDA builds, replace with an appropriate wheel and index.
-torch==2.2.0+cpu
+torch==2.2.0
 transformers==4.33.2
 gradio==3.40.1
 plotly==5.15.0
