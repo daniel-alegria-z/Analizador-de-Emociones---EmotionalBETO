@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Tests
+.pytest_cache/
+
+# Mac
+.DS_Store
+
+# Logs and local files
+*.log
+*.sqlite3
+
+# Hugging Face cache (not needed in repo)
+# (these are usually in HOME, but ignore any local caches)
+.cache/huggingface/
+.cache/torch/
+
+# Docker
+docker-compose.override.yml
+
+# Data (keep sample_eval but ignore large data)
+data/*.parquet
+data/*.csv.gz

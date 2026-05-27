@@ -1,0 +1,11 @@
+# Set default behaviour, in case people don't have core.autocrlf set.
+* text=auto
+
+# Declare files that will always be binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.gz binary

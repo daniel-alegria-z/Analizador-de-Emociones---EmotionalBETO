@@ -1,0 +1,9 @@
+,alegría,asco,enojo,miedo,neutral,sarcasmo,sorpresa,tristeza
+alegría,3,0,0,0,0,0,1,0
+asco,0,1,0,0,0,0,0,0
+enojo,0,0,1,0,1,0,0,1
+miedo,0,0,0,3,0,0,0,0
+neutral,0,0,0,0,2,0,0,1
+sarcasmo,1,0,0,0,1,0,0,0
+sorpresa,1,0,0,0,1,0,0,0
+tristeza,0,0,1,0,0,0,0,1

@@ -1,0 +1,16 @@
+# Use CPU build of PyTorch for portability in the Docker image.
+# For GPU/CUDA builds, replace with an appropriate wheel and index.
+torch==2.2.0+cpu
+transformers==4.33.2
+gradio==3.40.1
+plotly==5.15.0
+pandas==2.2.3
+pytest==7.4.2
+pytest-mock==3.11.0
+
+# Setup (Windows example):
+# python -m venv .env
+# .\.env\Scripts\activate
+# pip install -r requirements.txt --prefer-binary
+# python emotional_bert.py
+
